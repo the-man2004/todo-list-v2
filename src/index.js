@@ -2,32 +2,35 @@ const form = document.querySelector(".add-text");
 const addInput = document.querySelector(".add-input");
 const todoContainer = document.querySelector(".todos");
 
+const todos = JSON.parse(localStorage.getItem('todos')) || [];
+
 // Global variables
-const obj = [
-  {
-    title: "yes sir",
-    id: 1,
-    checked: true,
-  },
-  {
-    title: "Good day to you",
-    id: 2,
-    checked: true,
-  },
-  {
-    title: "NOOOOOOOOOOO",
-    id: 3,
-    checked: false,
-  },
-];
+// const obj = [
+//   {
+//     title: "yes sir",
+//     id: 1,
+//     checked: true,
+//   },
+//   {
+//     title: "Good day to you",
+//     id: 2,
+//     checked: true,
+//   },
+//   {
+//     title: "NOOOOOOOOOOO",
+//     id: 3,
+//     checked: false,
+//   },
+// ];
+
 
 // Helper functions
-const renderTodo = (obj) => {
-  obj.forEach((todo) => addTodo(todo));
+const renderTodo = () => {
+  todos.forEach((todo) => addTodo(todo));
 };
 
 const addTodo = (todo) => {
-  todoContainer.insertAdjacentHTML(
+    todoContainer.insertAdjacentHTML(
     "afterbegin",
     `
       <li id="${todo.id}">
@@ -53,10 +56,9 @@ const editTodo = (id, p) => {
 
 // EventListeners
 form.addEventListener("submit", function (e) {
-  e.preventDefault();
 
+  e.preventDefault();
   addTodo(addInput.value);
-  console.log(addInput.value);
 });
 
 todoContainer.addEventListener("click", function (e) {
