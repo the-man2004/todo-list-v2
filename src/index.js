@@ -2,7 +2,7 @@ const form = document.querySelector(".add-text");
 const addInput = document.querySelector(".add-input");
 const todoContainer = document.querySelector(".todos");
 
-const todos = JSON.parse(localStorage.getItem('todos')) || [];
+const todos = JSON.parse(localStorage.getItem("todos")) || [];
 
 // Global variables
 // const obj = [
@@ -23,14 +23,13 @@ const todos = JSON.parse(localStorage.getItem('todos')) || [];
 //   },
 // ];
 
-
 // Helper functions
 const renderTodo = () => {
   todos.forEach((todo) => addTodo(todo));
 };
 
 const addTodo = (todo) => {
-    todoContainer.insertAdjacentHTML(
+  todoContainer.insertAdjacentHTML(
     "afterbegin",
     `
       <li id="${todo.id}">
@@ -39,7 +38,7 @@ const addTodo = (todo) => {
               ? '<input type="checkbox" />'
               : '<input checked type="checkbox" />'
           }
-          <p>Item three</p>
+          <p>${todo.title}</p>
           <button class="edit-button">edit</button>
           <button>delete</button>
       </li>
@@ -56,9 +55,19 @@ const editTodo = (id, p) => {
 
 // EventListeners
 form.addEventListener("submit", function (e) {
-
   e.preventDefault();
-  addTodo(addInput.value);
+
+  // creating newTodo
+  const newTodo = {
+    id: Math.random(),
+    title: addInput.value,
+    checked: false,
+  };
+
+  addTodo(newTodo);
+
+  todos.push(newTodo);
+  localStorage.setItem("todos", JSON.stringify(todos));
 });
 
 todoContainer.addEventListener("click", function (e) {
@@ -70,5 +79,5 @@ todoContainer.addEventListener("click", function (e) {
 });
 
 window.addEventListener("load", function () {
-  renderTodo(obj);
+  renderTodo(todos);
 });
