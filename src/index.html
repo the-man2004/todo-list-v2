@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= htmlWebpackPlugin.options.title %></title>
-</head>
-<body>
+  </head>
+  <body>
     <h1><%= htmlWebpackPlugin.options.title %></h1>
     <div class="container">
-        <form class="add-text">
-            <input placeholder="Add item" class="add-input" type="text">
-            <button>Enter</button>
-        </form>
-        <div class="item-list">
-            <ul>
-                <li>
-                    <input type="checkbox">
-                    <p>Item one</p>
-                    <p>edit</p>
-                    <p>delete</p>
-                </li>
-                <li>
-                    <input type="checkbox">
-                    <p>Item two</p>
-                    <p>edit</p>
-                    <p>delete</p>
-                </li>
-                <li>
-                    <input type="checkbox">
-                    <p>Item three</p>
-                    <p>edit</p>
-                    <p>delete</p>
-                </li>
-            </ul>
-        </div>
-        <button>Clear completed</button>
+      <form class="add-text">
+        <input placeholder="Add item" class="add-input" type="text" />
+        <button>Enter</button>
+      </form>
+      <div class="item-list">
+        <ul class="todos">
+          <li>
+            <input type="checkbox" />
+            <p>Item one</p>
+            <p>edit</p>
+            <button>delete</button>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <p>Item two</p>
+            <p>edit</p>
+            <button>delete</button>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <p>Item three</p>
+            <p>edit</p>
+            <button>delete</button>
+          </li>
+        </ul>
+      </div>
+      <button>Clear completed</button>
     </div>
-</body>
+  </body>
 </html>
