@@ -38,7 +38,9 @@ const editTodo = (id, p) => {
 };
 
 const deleteTodo = (id) => {
-  const newTodos = todos.splice(id, 1);
+  //   const newTodos = todos.splice(id, 1);
+  const newTodos = todos.filter((todo) => todo.id !== +id);
+  console.log(newTodos);
 
   todos = newTodos;
 
@@ -68,6 +70,7 @@ form.addEventListener("submit", function (e) {
   };
 
   addTodo(newTodo);
+  addInput.value = "";
 
   todos.push(newTodo);
   localStorage.setItem("todos", JSON.stringify(todos));
