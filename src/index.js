@@ -2,29 +2,11 @@ const form = document.querySelector(".add-text");
 const addInput = document.querySelector(".add-input");
 const todoContainer = document.querySelector(".todos");
 
-const todos = JSON.parse(localStorage.getItem("todos")) || [];
-
-// Global variables
-// const obj = [
-//   {
-//     title: "yes sir",
-//     id: 1,
-//     checked: true,
-//   },
-//   {
-//     title: "Good day to you",
-//     id: 2,
-//     checked: true,
-//   },
-//   {
-//     title: "NOOOOOOOOOOO",
-//     id: 3,
-//     checked: false,
-//   },
-// ];
+let todos = JSON.parse(localStorage.getItem("todos")) || [];
 
 // Helper functions
 const renderTodo = () => {
+  todoContainer.innerHTML = "";
   todos.forEach((todo) => addTodo(todo));
 };
 
@@ -40,7 +22,7 @@ const addTodo = (todo) => {
           }
           <p>${todo.title}</p>
           <button class="edit-button">edit</button>
-          <button>delete</button>
+          <button class="delete-btn" >delete</button>
       </li>
     `
   );
@@ -51,6 +33,14 @@ const editTodo = (id, p) => {
   console.log(el);
 
   console.log(id);
+};
+
+const deleteTodo = (id) => {
+  const newTodos = todos.splice(id, 1);
+
+  todos = newTodos;
+
+  localStorage.setItem("todos", JSON.stringify(newTodos));
 };
 
 // EventListeners
@@ -75,6 +65,12 @@ todoContainer.addEventListener("click", function (e) {
     editTodo(e.target.parentNode.id);
 
     console.log("edit");
+  }
+
+  if (e.target.classList.contains("delete-btn")) {
+    deleteTodo(e.target.parentNode.id);
+
+    renderTodo();
   }
 });
 
