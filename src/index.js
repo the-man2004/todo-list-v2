@@ -17,10 +17,12 @@ const addTodo = (todo) => {
       <li id="${todo.id}">
           ${
             !todo.checked
-              ? '<input type="checkbox" />'
-              : '<input checked type="checkbox" />'
+              ? '<input class="checked" type="checkbox" />'
+              : '<input class="checked" checked type="checkbox" />'
           }
-          <p>${todo.title}</p>
+          <p style="${todo.checked ? "text-decoration: line-through" : ""}" >${
+      todo.title
+    }</p>
           <button class="edit-button">edit</button>
           <button class="delete-btn" >delete</button>
       </li>
@@ -43,6 +45,17 @@ const deleteTodo = (id) => {
   localStorage.setItem("todos", JSON.stringify(newTodos));
 };
 
+const toggleTodo = (id) => {
+  for (let i = 0; i < todos.length; i++) {
+    if (todos[i].id === id) {
+      todos[i].checked = !todos[i].checked;
+
+      localStorage.setItem("todos", JSON.stringify(todos));
+      renderTodo();
+    }
+  }
+};
+
 // EventListeners
 form.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -61,16 +74,23 @@ form.addEventListener("submit", function (e) {
 });
 
 todoContainer.addEventListener("click", function (e) {
-  if (e.target.classList.contains("edit-button")) {
-    editTodo(e.target.parentNode.id);
+  const target = e.target.classList;
+  const parent = e.target.parentNode.id;
+
+  if (target.contains("edit-button")) {
+    editTodo(parent);
 
     console.log("edit");
   }
 
-  if (e.target.classList.contains("delete-btn")) {
-    deleteTodo(e.target.parentNode.id);
+  if (target.contains("delete-btn")) {
+    deleteTodo(parent);
 
     renderTodo();
+  }
+
+  if (target.contains("checked")) {
+    toggleTodo(Number(parent));
   }
 });
 
