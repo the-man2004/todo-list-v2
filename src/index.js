@@ -1,6 +1,7 @@
 const form = document.querySelector(".add-text");
 const addInput = document.querySelector(".add-input");
 const todoContainer = document.querySelector(".todos");
+const clearButton = document.querySelector(".clear-button");
 
 let todos = JSON.parse(localStorage.getItem("todos")) || [];
 
@@ -42,6 +43,15 @@ const editTodo = (id) => {
 
   parent.remove();
 };
+
+const clearAllCompleted = () => {
+  const filtered = todos.filter((item) => {
+    return !item.checked === true;
+  });
+  localStorage.setItem('todos', JSON.stringify(filtered));
+  todos = filtered;
+  renderTodo();
+}
 
 const deleteTodo = (id) => {
   //   const newTodos = todos.splice(id, 1);
@@ -101,6 +111,8 @@ todoContainer.addEventListener("click", function (e) {
   }
 });
 
-window.addEventListener("load", function () {
+clearButton.addEventListener('click', clearAllCompleted);
+
+window.addEventListener("load", function() {
   renderTodo(todos);
 });
