@@ -30,11 +30,17 @@ const addTodo = (todo) => {
   );
 };
 
-const editTodo = (id, p) => {
-  const el = document.getElementById(id);
-  console.log(el);
+const editTodo = (id) => {
+  const parent = document.getElementById(id);
+  const title = parent.querySelector("p").textContent;
 
-  console.log(id);
+  addInput.value = title;
+
+  console.log(title);
+
+  deleteTodo(id);
+
+  parent.remove();
 };
 
 const deleteTodo = (id) => {
@@ -82,8 +88,6 @@ todoContainer.addEventListener("click", function (e) {
 
   if (target.contains("edit-button")) {
     editTodo(parent);
-
-    console.log("edit");
   }
 
   if (target.contains("delete-btn")) {
