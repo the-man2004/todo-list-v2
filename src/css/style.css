@@ -6,4 +6,32 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: sans-serif;
+}
 
+.top {
+  background-color: #333;
+  color: #fff;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.add-input {
+  padding: 5px;
+  border: 1px solid #fff;
+  border-radius: 5px 0 0 5px;
+}
+
+.add-input:focus {
+  outline: 2px solid light-gray;
+}
+
+form button {
+  padding: 5px;
+  /* margin-left: -5px; */
+  border: 1px solid #fff;
+  border-radius: 0 5px 5px 0;
+}

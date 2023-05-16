@@ -1,3 +1,5 @@
+import css from "./css/style.css";
+
 const form = document.querySelector(".add-text");
 const addInput = document.querySelector(".add-input");
 const todoContainer = document.querySelector(".todos");
@@ -15,15 +17,15 @@ const addTodo = (todo) => {
   todoContainer.insertAdjacentHTML(
     "afterbegin",
     `
-      <li id="${todo.id}">
+      <li id="${todo.id}" class="card">
           ${
             !todo.checked
               ? '<input class="checked" type="checkbox" />'
               : '<input class="checked" checked type="checkbox" />'
           }
-          <p style="${todo.checked ? "text-decoration: line-through" : ""}" >${
-      todo.title
-    }</p>
+          <p class="note-title" style="${
+            todo.checked ? "text-decoration: line-through" : ""
+          }" >${todo.title}</p>
           <button class="edit-button">edit</button>
           <button class="delete-btn" >delete</button>
       </li>
@@ -48,10 +50,10 @@ const clearAllCompleted = () => {
   const filtered = todos.filter((item) => {
     return !item.checked === true;
   });
-  localStorage.setItem('todos', JSON.stringify(filtered));
+  localStorage.setItem("todos", JSON.stringify(filtered));
   todos = filtered;
   renderTodo();
-}
+};
 
 const deleteTodo = (id) => {
   //   const newTodos = todos.splice(id, 1);
@@ -111,8 +113,8 @@ todoContainer.addEventListener("click", function (e) {
   }
 });
 
-clearButton.addEventListener('click', clearAllCompleted);
+clearButton.addEventListener("click", clearAllCompleted);
 
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
   renderTodo(todos);
 });

@@ -7,12 +7,14 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
-    <h1><%= htmlWebpackPlugin.options.title %></h1>
     <div class="container">
-      <form class="add-text">
-        <input placeholder="Add item" class="add-input" type="text" />
-        <button>Enter</button>
-      </form>
+      <div class="top">
+        <h1><%= htmlWebpackPlugin.options.title %></h1>
+        <form class="add-text">
+          <input placeholder="Add item" class="add-input" type="text" />
+          <button>Enter</button>
+        </form>
+      </div>
       <div class="item-list">
         <ul class="todos">
           <!-- <li id="one">
