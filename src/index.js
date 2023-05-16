@@ -5,7 +5,7 @@ const addInput = document.querySelector(".add-input");
 const todoContainer = document.querySelector(".todos");
 const clearButton = document.querySelector(".clear-button");
 
-let todos = JSON.parse(localStorage.getItem("todos")) || [];
+export let todos = JSON.parse(localStorage.getItem("todos")) || [];
 
 // Helper functions
 const renderTodo = () => {
@@ -13,7 +13,7 @@ const renderTodo = () => {
   todos.forEach((todo) => addTodo(todo));
 };
 
-const addTodo = (todo) => {
+ export const addTodo = (todo) => {
   todoContainer.insertAdjacentHTML(
     "afterbegin",
     `
@@ -27,13 +27,13 @@ const addTodo = (todo) => {
             todo.checked ? "text-decoration: line-through" : ""
           }" >${todo.title}</p>
           <button class="edit-button">edit</button>
-          <button class="delete-btn" >delete</button>
+          <button class="delete-btn" >delete</button> 
       </li>
     `
   );
 };
 
-const editTodo = (id) => {
+export const editTodo = (id) => {
   const parent = document.getElementById(id);
   const title = parent.querySelector("p").textContent;
 
@@ -46,7 +46,7 @@ const editTodo = (id) => {
   parent.remove();
 };
 
-const clearAllCompleted = () => {
+export const clearAllCompleted = () => {
   const filtered = todos.filter((item) => {
     return !item.checked === true;
   });
@@ -55,7 +55,7 @@ const clearAllCompleted = () => {
   renderTodo();
 };
 
-const deleteTodo = (id) => {
+export const deleteTodo = (id) => {
   //   const newTodos = todos.splice(id, 1);
   const newTodos = todos.filter((todo) => todo.id !== +id);
   console.log(newTodos);
@@ -65,7 +65,7 @@ const deleteTodo = (id) => {
   localStorage.setItem("todos", JSON.stringify(newTodos));
 };
 
-const toggleTodo = (id) => {
+export const toggleTodo = (id) => {
   for (let i = 0; i < todos.length; i++) {
     if (todos[i].id === id) {
       todos[i].checked = !todos[i].checked;
